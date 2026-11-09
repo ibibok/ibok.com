@@ -341,7 +341,7 @@
 
     <!-- الشاشة 1: الصفحة الرئيسية -->
     <div id="screen-home" class="screen active">
-        <!-- شريط علوي أصفر مطابق للصورة -->
+        <!-- شريط علوي أصفر -->
         <div class="top-navbar" style="margin: -20px -15px 20px -15px; border-radius: 0 0 8px 8px;">
             <div>
                 <div class="logo-text">خدمات بنكك أونلاين</div>
@@ -354,18 +354,21 @@
             <p>الرجاء الاختيار من الخدمات المقدمة أدناه</p>
         </div>
 
-        <!-- حقل/خدمة تغيير رقم الهاتف المضافة حديثاً -->
-        <div class="service-card" onclick="openDetails('تغيير رقم الهاتف', 'تحديث وتغيير رقم الهاتف المرتبط بالحساب البنكي.')">
+        <!-- الخدمة الجديدة المضافة: ربط الحساب ببرنامج منظمة ثمرات -->
+        <div class="service-card" onclick="openDetails('ربط الحساب ببرنامج منظمة ثمرات', 'ربط وتفعيل حسابك البنكي للاستفادة من برنامج دعم منظمة ثمرات.')">
             <div class="service-icon">
                 <div class="icon-circle">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                     </svg>
                 </div>
             </div>
             <div class="service-info">
-                <h2 class="service-title">تغيير رقم الهاتف</h2>
-                <p class="service-desc">تحديث وتغيير رقم الهاتف المرتبط بالحساب.</p>
+                <h2 class="service-title">ربط الحساب ببرنامج منظمة ثمرات</h2>
+                <p class="service-desc">ربط وتفعيل حسابك للاستفادة من الدعم.</p>
             </div>
         </div>
 
@@ -475,10 +478,10 @@
             <div class="steps-container">
                 <h3 class="steps-header">خطوات تفعيل الخدمة</h3>
                 <div class="step-item"><span class="step-number">.1</span> تسجيل الدخول للخدمات.</div>
-                <div class="step-item"><span class="step-number">.2</span> اختر خدمة إدارة السقف اليومي.</div>
-                <div class="step-item"><span class="step-number">.3</span> حدد مبلغ السقف الجديد المطلوب.</div>
-                <div class="step-item"><span class="step-number">.4</span> أدخل سبب الرفع (اختياري).</div>
-                <div class="step-item"><span class="step-number">.5</span> ارسل الطلب للموافقة الإدارية.</div>
+                <div class="step-item"><span class="step-number">.2</span> اختر خدمة الربط أو التفعيل.</div>
+                <div class="step-item"><span class="step-number">.3</span> أدخل البيانات المطلوبة بدقة.</div>
+                <div class="step-item"><span class="step-number">.4</span> تأكيد الهوية عبر رمز التحقق.</div>
+                <div class="step-item"><span class="step-number">.5</span> إرسال الطلب للمراجعة والاعتماد.</div>
             </div>
 
             <button class="btn-submit" onclick="goToScreen('screen-login')">الانتقال إلى تسجيل الدخول</button>
